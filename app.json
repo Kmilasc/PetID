@@ -23,7 +23,19 @@
         }
       ],
       [
-        "./plugins/withDisableForcedDarkModeAndroid.js", {}
+        "./plugins/withDisableForcedDarkModeAndroid.js",
+        {}
+      ],
+      "@react-native-firebase/app",
+      "@react-native-firebase/auth",
+      "@react-native-firebase/crashlytics",
+      [
+        "expo-build-properties",
+        {
+          "ios": {
+            "useFrameworks": "static"
+          }
+        }
       ]
     ],
     "orientation": "portrait",
@@ -39,7 +51,8 @@
     ],
     "ios": {
       "userInterfaceStyle": "light",
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.app.petid"
     },
     "android": {
       "userInterfaceStyle": "light",
@@ -47,6 +60,20 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
+      "package": "com.app.petid",
+      "googleServicesFile": "./google-services.json"
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "29c6de00-2217-4979-829c-06967cf2977a"
+      }
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/29c6de00-2217-4979-829c-06967cf2977a"
     }
   }
 }

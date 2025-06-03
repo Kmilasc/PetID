@@ -4,7 +4,7 @@ import { Theme, ThemeProvider, DefaultTheme, DarkTheme } from '@react-navigation
 import { Slot } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import * as React from 'react';
-import { Platform } from 'react-native';
+import { Platform, View } from 'react-native';
 import { NAV_THEME } from '~/lib/constants';
 import { useColorScheme } from '~/lib/useColorScheme';
 import {
@@ -12,6 +12,11 @@ import {
   QueryClientProvider,
 } from '@tanstack/react-query'
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { AuthProvider } from '~/hooks/auth';
+import { PortalHost } from '@rn-primitives/portal';
+import { Spinner } from '~/components/ui/spinner';
+import { ToastProvider } from '~/components/ui/toast-provider';
+
 export {
   ErrorBoundary,
 } from 'expo-router';
@@ -27,8 +32,6 @@ const DARK_THEME: Theme = {
   colors: NAV_THEME.dark,
 };
 
-
-
 export default function RootLayout() {
   const hasMounted = React.useRef(false);
   const { isDarkColorScheme } = useColorScheme();
@@ -40,7 +43,6 @@ export default function RootLayout() {
     }
 
     if (Platform.OS === 'web') {
-      // Adds the background color to the html element to prevent white background on overscroll.
       document.documentElement.classList.add('bg-background');
     }
     setIsColorSchemeLoaded(true);
@@ -48,18 +50,26 @@ export default function RootLayout() {
   }, []);
 
   if (!isColorSchemeLoaded) {
-    return null;
+    return (
+      <View className="flex-1 items-center justify-center">
+        <Spinner size="lg" />
+      </View>
+    );
   }
 
   return (
-    
       <QueryClientProvider client={queryClient}>
-        <ThemeProvider value={isDarkColorScheme ? DARK_THEME : LIGHT_THEME}>
-          <StatusBar style={isDarkColorScheme ? 'light' : 'dark'} />
-          <SafeAreaView className='flex-1'>
-            <Slot />
-          </SafeAreaView>
-        </ThemeProvider>
+        <AuthProvider>
+          <ThemeProvider value={isDarkColorScheme ? DARK_THEME : LIGHT_THEME}>
+            <ToastProvider>
+              <StatusBar style={isDarkColorScheme ? 'light' : 'dark'} />
+              <SafeAreaView className='flex-1'>
+                <Slot />
+                <PortalHost />
+              </SafeAreaView>
+            </ToastProvider>
+          </ThemeProvider>
+        </AuthProvider>
       </QueryClientProvider>
   );
 }

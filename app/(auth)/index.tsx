@@ -18,6 +18,7 @@ export default function Page() {
       </Text>
       <View className='max-w-xs flex flex-col w-full gap-2'>
         <Link
+          replace
           href="/login"
           asChild
         >
@@ -26,6 +27,7 @@ export default function Page() {
           </Button>
         </Link>
         <Link
+          replace
           href="/signup"
           asChild
         >
