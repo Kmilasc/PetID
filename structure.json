@@ -1,0 +1,39 @@
+{
+    "users": [
+        {
+            "name": "Kamilla Silva",
+            "contact": "(11) 91234-5678",
+            "updatedAt": "2025-06-02T10:00:00.000Z"
+        },
+        {
+            "name": "João Souza",
+            "contact": "(21) 99876-5432",
+            "updatedAt": "2025-06-01T15:30:00.000Z"
+        }
+    ],
+    "pets": [
+        {
+            "id": "pet001",
+            "name": "Rex",
+            "breed": "Labrador",
+            "sex": "Macho",
+            "vaccinated": true,
+            "diseases": "Nenhuma",
+            "photo": "https://exemplo.com/foto-rex.jpg",
+            "ownerId": "user001",
+            "createdAt": "2025-05-30T08:45:00.000Z",
+            "updatedAt": "2025-06-02T10:00:00.000Z"
+        },
+        {
+            "id": "pet002",
+            "name": "Luna",
+            "breed": "Pastor Alemão",
+            "sex": "Fêmea",
+            "vaccinated": false,
+            "photo": "https://exemplo.com/foto-luna.jpg",
+            "ownerId": "user002",
+            "createdAt": "2025-05-28T11:20:00.000Z",
+            "updatedAt": "2025-06-01T15:30:00.000Z"
+        }
+    ]
+}
